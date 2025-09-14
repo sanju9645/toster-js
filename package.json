@@ -1,6 +1,6 @@
 {
   "name": "toster-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A lightweight, customizable toast notification library with Tailwind CSS styling",
   "main": "dist/toster-js.js",
   "module": "dist/toster-js.esm.js",
@@ -35,7 +35,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sanju9645/toster-js.git"
+    "url": "git+https://github.com/sanju9645/toster-js.git"
   },
   "bugs": {
     "url": "https://github.com/sanju9645/toster-js/issues"
