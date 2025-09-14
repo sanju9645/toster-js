@@ -1,0 +1,56 @@
+{
+  "name": "toster-js",
+  "version": "1.0.0",
+  "description": "A lightweight, customizable toast notification library with Tailwind CSS styling",
+  "main": "dist/toster-js.js",
+  "module": "dist/toster-js.esm.js",
+  "types": "dist/toster-js.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "DEVELOPMENT.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "toast",
+    "notification",
+    "alert",
+    "popup",
+    "tailwind",
+    "javascript",
+    "vanilla-js",
+    "ui",
+    "ux"
+  ],
+  "author": {
+    "name": "Sanju",
+    "url": "https://github.com/sanju9645"
+  },
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanju9645/toster-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sanju9645/toster-js/issues"
+  },
+  "homepage": "https://github.com/sanju9645/toster-js#readme",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.9.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}
