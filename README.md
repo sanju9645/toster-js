@@ -2,6 +2,8 @@
 
 A lightweight, customizable toast notification library with Tailwind CSS styling. Perfect for modern web applications that need beautiful, accessible toast notifications.
 
+**[🎮 View Live Demo](https://sanju9645.github.io/toster-js/)**
+
 ## Features
 
 - 🚀 **Zero Configuration** - Automatically loads Font Awesome and Tailwind CSS
