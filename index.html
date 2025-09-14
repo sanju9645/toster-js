@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Toster.js - Toast Notification Library Demo</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="dist/toster-js.js"></script>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -172,15 +169,7 @@
     </footer>
   </div>
 
-  <script>
-    // Add some demo functionality
-    console.log('Toster.js Demo loaded successfully!');
-    console.log('Available methods:', Object.keys(toster));
-    
-    // Show welcome message
-    setTimeout(() => {
-      toster.info('Welcome to Toster.js demo! Click the buttons below to see different toast types.', 'Welcome!');
-    }, 1000);
-  </script>
+  <script src="dist/toster-js.js"></script>
+  <script src="node_modules/toster-js/dist/toster-js.js"></script>
 </body>
 </html>

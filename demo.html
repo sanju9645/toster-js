@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toster.js Test</title>
+
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <!-- Include Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-8">Toster.js Test Page</h1>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Basic Toast Types -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Basic Toast Types</h2>
+        <div class="space-y-3">
+          <button class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="testInfo()">Info Toast</button>
+          <button class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="testSuccess()">Success Toast</button>
+          <button class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="testError()">Error Toast</button>
+          <button class="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" onclick="testWarning()">Warning Toast</button>
+        </div>
+      </div>
+
+      <!-- Custom Options -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Custom Options</h2>
+        <div class="space-y-3">
+          <button class="w-full bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600" onclick="testCustom()">Custom Toast</button>
+          <button class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" onclick="testNoAutoClose()">No Auto-Close</button>
+          <button class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="testQuickClose()">3s Auto-Close</button>
+          <button class="w-full bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600" onclick="testHTML()">HTML Content</button>
+        </div>
+      </div>
+
+      <!-- Dark Theme -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Dark Theme</h2>
+        <div class="space-y-3">
+          <button class="w-full bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900" onclick="testDarkSuccess()">Dark Success</button>
+          <button class="w-full bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900" onclick="testDarkError()">Dark Error</button>
+          <button class="w-full bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900" onclick="testDarkWarning()">Dark Warning</button>
+          <button class="w-full bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900" onclick="testDarkInfo()">Dark Info</button>
+        </div>
+      </div>
+
+      <!-- Advanced Features -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Advanced Features</h2>
+        <div class="space-y-3">
+          <button class="w-full bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600" onclick="testLongMessage()">Long Message</button>
+          <button class="w-full bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600" onclick="testMultiple()">Multiple Toasts</button>
+          <button class="w-full bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600" onclick="testInteractive()">Interactive Content</button>
+          <button class="w-full bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600" onclick="testCustomIcon()">Custom Icon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Toster.js -->
+  <script src="node_modules/toster-js/dist/toster-js.js"></script>
+  
+  <script>
+    // Test functions using the correct API
+    function testInfo() {
+      toster.info('This is an informational message!');
+    }
+    
+    function testSuccess() {
+      toster.success('Operation completed successfully!');
+    }
+    
+    function testError() {
+      toster.error('Something went wrong. Please try again.');
+    }
+    
+    function testWarning() {
+      toster.warning('Please check your input before proceeding.');
+    }
+    
+    function testCustom() {
+      toster.custom({
+        icon: 'fa-star',
+        iconColor: 'text-purple-500',
+        borderColor: 'border-purple-500',
+        title: 'Custom Toast',
+        message: 'This is a custom styled toast!',
+        theme: 'light'
+      });
+    }
+    
+    function testNoAutoClose() {
+      toster.warning('This toast will NOT close automatically - click X to close', 'Manual Close', {autoClose: false});
+    }
+    
+    function testQuickClose() {
+      toster.info('This toast will close in 3 seconds', 'Quick Close', {autoCloseDelay: 3000});
+    }
+    
+    function testHTML() {
+      toster.success('This message contains <strong>HTML formatting</strong> and <em>styling</em>!', 'HTML Support');
+    }
+    
+    function testDarkSuccess() {
+      toster.success('This is a dark theme success message!', 'Dark Success', {theme: 'dark'});
+    }
+    
+    function testDarkError() {
+      toster.error('This is a dark theme error message!', 'Dark Error', {theme: 'dark'});
+    }
+    
+    function testDarkWarning() {
+      toster.warning('This is a dark theme warning message!', 'Dark Warning', {theme: 'dark'});
+    }
+    
+    function testDarkInfo() {
+      toster.info('This is a dark theme info message!', 'Dark Info', {theme: 'dark'});
+    }
+    
+    function testLongMessage() {
+      toster.warning('This is a very long message that will be automatically truncated to prevent the toast from becoming too wide and breaking the layout. The library intelligently handles long content by trimming it appropriately while preserving the overall user experience.', 'Long Message Test');
+    }
+    
+    function testMultiple() {
+      toster.info('First toast message!');
+      setTimeout(() => toster.success('Second toast message!'), 500);
+      setTimeout(() => toster.warning('Third toast message!'), 1000);
+    }
+    
+    function testInteractive() {
+      toster.success('Click <a href="#" onclick="alert(\'Link clicked!\'); return false;" class="underline hover:no-underline">here</a> to test interactive content!', 'Interactive Toast');
+    }
+    
+    function testCustomIcon() {
+      toster.custom({
+        icon: 'fa-heart',
+        iconColor: 'text-pink-500',
+        borderColor: 'border-pink-500',
+        title: 'Custom Icon',
+        message: 'This toast uses a heart icon!',
+        theme: 'light'
+      });
+    }
+  </script>
+</body>
+</html>

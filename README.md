@@ -4,10 +4,11 @@ A lightweight, customizable toast notification library with Tailwind CSS styling
 
 ## Features
 
+- 🚀 **Zero Configuration** - Automatically loads Font Awesome and Tailwind CSS
 - 🎨 **Tailwind CSS Ready** - Works seamlessly with Tailwind CSS
 - 🌙 **Dark Mode Support** - Built-in light and dark themes
 - 📱 **Mobile Friendly** - Responsive design that works on all devices
-- 🎯 **Zero Dependencies** - No external dependencies required
+- 🎯 **Smart Dependencies** - Detects existing dependencies, no duplicates
 - ⚡ **Lightweight** - Only ~3KB minified
 - 🎭 **Customizable** - Full control over styling and behavior
 - 🔧 **Easy to Use** - Simple API with sensible defaults
@@ -21,27 +22,39 @@ npm install toster-js
 
 ## Quick Start
 
-### 1. Include the library
+### Option 1: Zero Configuration (Recommended)
+
+Just include Toster.js and it will automatically load Font Awesome and Tailwind CSS if they're not already present:
 
 ```html
-<!-- Include Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<!-- Only include Toster.js - dependencies loaded automatically -->
+<script src="node_modules/toster-js/dist/toster-js.js"></script>
+```
 
-<!-- Include Tailwind CSS -->
+```javascript
+// Basic usage - works immediately
+toster.success('Operation completed successfully!');
+toster.error('Something went wrong!');
+toster.warning('Please check your input!');
+toster.info('Here is some information!');
+```
+
+### Option 2: Manual Dependencies (For Existing Apps)
+
+If your app already has Font Awesome and Tailwind CSS, Toster.js will detect them and won't load duplicates:
+
+```html
+<!-- Your existing dependencies -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <!-- Include Toster.js -->
 <script src="node_modules/toster-js/dist/toster-js.js"></script>
 ```
 
-### 2. Use the toast functions
-
 ```javascript
-// Basic usage
+// Works with existing dependencies
 toster.success('Operation completed successfully!');
-toster.error('Something went wrong!');
-toster.warning('Please check your input!');
-toster.info('Here is some information!');
 ```
 
 ## API Reference

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standalone Toster.js Test - No Dependencies</title>
+  <!-- NO Font Awesome or Tailwind CSS included - toster-js should load them automatically -->
+</head>
+<body>
+  <div style="padding: 20px; font-family: Arial, sans-serif;">
+    <h1>Standalone Toster.js Test</h1>
+    <p>This page has NO Font Awesome or Tailwind CSS included. Toster.js should automatically load them.</p>
+    
+    <div style="margin: 20px 0;">
+      <button onclick="testSuccess()" style="background: #10b981; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+        Test Success Toast
+      </button>
+      
+      <button onclick="testError()" style="background: #ef4444; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+        Test Error Toast
+      </button>
+      
+      <button onclick="testWarning()" style="background: #f59e0b; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+        Test Warning Toast
+      </button>
+      
+      <button onclick="testInfo()" style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+        Test Info Toast
+      </button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+      <button onclick="testCustom()" style="background: #8b5cf6; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+        Test Custom Toast
+      </button>
+      
+      <button onclick="testDark()" style="background: #374151; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+        Test Dark Theme
+      </button>
+    </div>
+    
+    <div style="margin: 20px 0; padding: 15px; background: #f3f4f6; border-radius: 5px;">
+      <h3>Instructions:</h3>
+      <ol>
+        <li>Click any button above</li>
+        <li>Toster.js should automatically load Font Awesome and Tailwind CSS</li>
+        <li>You should see beautiful toast notifications</li>
+        <li>Check the browser's Network tab to see the dependencies being loaded</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Only include toster-js - no other dependencies -->
+  <script src="dist/toster-js.js"></script>
+  
+  <script>
+    // Test functions
+    function testSuccess() {
+      toster.success('This is a success message! The library automatically loaded Font Awesome and Tailwind CSS.');
+    }
+    
+    function testError() {
+      toster.error('This is an error message! No manual dependencies needed.');
+    }
+    
+    function testWarning() {
+      toster.warning('This is a warning message! Everything is loaded automatically.');
+    }
+    
+    function testInfo() {
+      toster.info('This is an info message! Just include toster-js and you\'re ready to go.');
+    }
+    
+    function testCustom() {
+      toster.custom({
+        icon: 'fa-star',
+        iconColor: 'text-purple-500',
+        borderColor: 'border-purple-500',
+        title: 'Custom Toast',
+        message: 'This is a custom styled toast with automatic dependency loading!',
+        theme: 'light'
+      });
+    }
+    
+    function testDark() {
+      toster.success('This is a dark theme success message!', 'Dark Success', {theme: 'dark'});
+    }
+    
+    // Show welcome message when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        toster.info('Welcome! Toster.js has automatically loaded all dependencies. Click the buttons to test!', 'Auto-Loading Test');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

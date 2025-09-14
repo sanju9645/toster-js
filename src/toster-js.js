@@ -22,8 +22,87 @@ class Toster {
   }
 
   init() {
+    this.loadDependencies();
     this.createToastContainer();
     this.injectStyles();
+  }
+
+  loadDependencies() {
+    // Check and load Font Awesome if not present
+    this.loadFontAwesome();
+    
+    // Check and load Tailwind CSS if not present
+    this.loadTailwindCSS();
+  }
+
+  loadFontAwesome() {
+    // Check if Font Awesome is already loaded
+    const existingFA = document.querySelector('link[href*="font-awesome"]') || 
+                      document.querySelector('link[href*="fontawesome"]') ||
+                      document.querySelector('link[href*="all.min.css"]');
+    
+    if (!existingFA) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css';
+      link.integrity = 'sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==';
+      link.crossOrigin = 'anonymous';
+      link.referrerPolicy = 'no-referrer';
+      document.head.appendChild(link);
+    }
+  }
+
+  loadTailwindCSS() {
+    // Check if Tailwind CSS is already loaded
+    const existingTailwind = document.querySelector('script[src*="tailwindcss"]') ||
+                            document.querySelector('link[href*="tailwind"]') ||
+                            window.tailwind;
+    
+    if (!existingTailwind) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.tailwindcss.com';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }
+
+  waitForDependencies() {
+    return new Promise((resolve) => {
+      // Check if Font Awesome is loaded
+      const checkFontAwesome = () => {
+        const faLoaded = document.querySelector('link[href*="font-awesome"]') || 
+                        document.querySelector('link[href*="fontawesome"]') ||
+                        document.querySelector('link[href*="all.min.css"]');
+        return faLoaded && faLoaded.sheet;
+      };
+
+      // Check if Tailwind is loaded
+      const checkTailwind = () => {
+        return window.tailwind || document.querySelector('script[src*="tailwindcss"]');
+      };
+
+      // If both are already loaded, resolve immediately
+      if (checkFontAwesome() && checkTailwind()) {
+        resolve();
+        return;
+      }
+
+      // Otherwise, wait for them to load
+      let attempts = 0;
+      const maxAttempts = 50; // 5 seconds max wait
+      
+      const checkInterval = setInterval(() => {
+        attempts++;
+        
+        if (checkFontAwesome() && checkTailwind()) {
+          clearInterval(checkInterval);
+          resolve();
+        } else if (attempts >= maxAttempts) {
+          clearInterval(checkInterval);
+          resolve(); // Resolve anyway to prevent infinite waiting
+        }
+      }, 100);
+    });
   }
 
   createToastContainer() {
@@ -161,7 +240,10 @@ class Toster {
     }
   }
 
-  show(config = {}) {
+  async show(config = {}) {
+    // Wait for dependencies to load if they were just added
+    await this.waitForDependencies();
+    
     const finalConfig = { ...this.defaultConfig, ...config };
     
     // Create toast element
@@ -249,8 +331,8 @@ class Toster {
   }
 
   // Convenience methods
-  success(message, title = 'Success!', options = {}) {
-    return this.show({
+  async success(message, title = 'Success!', options = {}) {
+    return await this.show({
       icon: 'fa-check-circle',
       iconColor: 'text-green-500',
       borderColor: 'border-green-500',
@@ -260,8 +342,8 @@ class Toster {
     });
   }
 
-  error(message, title = 'Error!', options = {}) {
-    return this.show({
+  async error(message, title = 'Error!', options = {}) {
+    return await this.show({
       icon: 'fa-exclamation-triangle',
       iconColor: 'text-red-500',
       borderColor: 'border-red-500',
@@ -271,8 +353,8 @@ class Toster {
     });
   }
 
-  warning(message, title = 'Warning!', options = {}) {
-    return this.show({
+  async warning(message, title = 'Warning!', options = {}) {
+    return await this.show({
       icon: 'fa-exclamation-circle',
       iconColor: 'text-yellow-500',
       borderColor: 'border-yellow-500',
@@ -282,8 +364,8 @@ class Toster {
     });
   }
 
-  info(message, title = 'Info', options = {}) {
-    return this.show({
+  async info(message, title = 'Info', options = {}) {
+    return await this.show({
       icon: 'fa-info-circle',
       iconColor: 'text-blue-500',
       borderColor: 'border-blue-500',
@@ -293,8 +375,8 @@ class Toster {
     });
   }
 
-  custom(config) {
-    return this.show(config);
+  async custom(config) {
+    return await this.show(config);
   }
 }
 
